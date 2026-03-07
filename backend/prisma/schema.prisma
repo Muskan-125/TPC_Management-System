@@ -1,0 +1,41 @@
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          String   @id @default(uuid())
+  name        String
+  email       String   @unique
+  password    String
+  role        String
+  resumePath  String?
+  isVerified  Boolean  @default(false)
+}
+
+model Job {
+  id           String   @id @default(uuid())
+  title        String
+  description  String
+  location     String
+  salary       Int?
+  jobType      String?
+  requirements String?
+  isActive     Boolean  @default(true)
+  companyId    String
+}
+
+model Application {
+  id          String   @id @default(uuid())
+  studentId   String
+  jobId       String
+  status      String   @default("APPLIED")
+  resumeUrl   String?
+  coverLetter String?
+  appliedAt   DateTime @default(now())
+}
