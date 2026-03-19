@@ -21,7 +21,7 @@ exports.verifyCompany = async (req, res, next) => {
 
     // Check if user exists
     const company = await prisma.user.findUnique({
-      where: { id: parseInt(id) }
+      where: { id: id }
     });
 
     if (!company) {
@@ -35,7 +35,7 @@ exports.verifyCompany = async (req, res, next) => {
 
     // Update verification status
     const updatedCompany = await prisma.user.update({
-      where: { id: parseInt(id) },
+      where: { id: id },
       data: { isVerified: true },
       select: {
         id: true,
@@ -74,7 +74,7 @@ exports.unverifyCompany = async (req, res, next) => {
 
     // Check if user exists
     const company = await prisma.user.findUnique({
-      where: { id: parseInt(id) }
+      where: { id: id }
     });
 
     if (!company) {
@@ -83,7 +83,7 @@ exports.unverifyCompany = async (req, res, next) => {
 
     // Update verification status
     const updatedCompany = await prisma.user.update({
-      where: { id: parseInt(id) },
+      where: { id: id },
       data: { isVerified: false },
       select: {
         id: true,

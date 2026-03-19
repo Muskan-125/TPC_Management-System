@@ -45,14 +45,14 @@ const JobDetails = () => {
   };
 
   if (loading) {
-      return (
-        <div className="d-flex justify-content-center align-items-center" style={{ minHeight: '50vh' }}>
-          <div className="text-center">
-            <div className="spinner-border text-primary mb-3" style={{ width: '3rem', height: '3rem' }}></div>
-            <p className="text-muted">Loading job details...</p>
-          </div>
+    return (
+      <div className="d-flex justify-content-center align-items-center" style={{ minHeight: '50vh' }}>
+        <div className="text-center">
+          <div className="spinner-border text-primary mb-3" style={{ width: '3rem', height: '3rem' }}></div>
+          <p className="text-muted">Loading job details...</p>
         </div>
-      );
+      </div>
+    );
   }
 
   if (error) {
@@ -86,6 +86,7 @@ const JobDetails = () => {
                 <span><FaMoneyBillWave className="me-1" />{job.salary || 'Not specified'}</span>
                 <span><FaBriefcase className="me-1" />{job.jobType || 'Full-time'}</span>
               </div>
+            </div>
             <div className="col-lg-4 text-lg-end mt-3 mt-lg-0">
               <span className={`badge fs-6 mb-3 ${job.isActive ? 'bg-success' : 'bg-secondary'}`}>
                 {job.isActive ? 'Active' : 'Closed'}
@@ -96,7 +97,13 @@ const JobDetails = () => {
                     <FaCheck className="me-2" /> Applied
                   </motion.div>
                 ) : (
-                  <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="btn btn-success btn-lg" onClick={handleApply} disabled={applying}>
+                  <motion.button 
+                    whileHover={{ scale: 1.05 }} 
+                    whileTap={{ scale: 0.95 }} 
+                    className="btn btn-success btn-lg" 
+                    onClick={handleApply} 
+                    disabled={applying}
+                  >
                     <FaPaperPlane className="me-2" /> {applying ? 'Applying...' : 'Apply Now'}
                   </motion.button>
                 )
@@ -106,29 +113,46 @@ const JobDetails = () => {
                 <button className="btn btn-secondary btn-lg" disabled>Not Eligible</button>
               )}
             </div>
+          </div>
         </div>
       </motion.div>
 
       <motion.div className="row" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
         <div className="col-lg-8">
           <div className="card border-0 shadow-sm">
-            <div className="card-header bg-white border-0"><h4 className="fw-bold mb-0">Description</h4></div>
-            <div className="card-body"><p>{job.description}</p></div>
+            <div className="card-header bg-white border-0">
+              <h4 className="fw-bold mb-0">Description</h4>
+            </div>
+            <div className="card-body">
+              <p>{job.description}</p>
+            </div>
+          </div>
           {job.requirements && (
             <div className="card border-0 shadow-sm mt-4">
-              <div className="card-header bg-white border-0"><h4 className="fw-bold mb-0">Requirements</h4></div>
-              <div className="card-body"><p>{job.requirements}</p></div>
+              <div className="card-header bg-white border-0">
+                <h4 className="fw-bold mb-0">Requirements</h4>
+              </div>
+              <div className="card-body">
+                <p>{job.requirements}</p>
+              </div>
+            </div>
           )}
         </div>
         <div className="col-lg-4 mt-4 mt-lg-0">
           <div className="card border-0 shadow-sm">
-            <div className="card-header bg-white border-0"><h5 className="fw-bold mb-0">Company</h5></div>
+            <div className="card-header bg-white border-0">
+              <h5 className="fw-bold mb-0">Company</h5>
+            </div>
             <div className="card-body text-center">
-              <div className="rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style={{ width: '60px', height: '60px', background: 'linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%)' }}>
+              <div 
+                className="rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" 
+                style={{ width: '60px', height: '60px', background: 'linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%)' }}
+              >
                 <FaBuilding className="text-primary" style={{ fontSize: '1.5rem' }} />
               </div>
               <h6>{job.company?.name}</h6>
             </div>
+          </div>
         </div>
       </motion.div>
     </div>

@@ -23,7 +23,7 @@ exports.applyForJob = async (req, res, next) => {
 
     // Check if job exists
     const job = await prisma.job.findUnique({
-      where: { id: parseInt(jobId) }
+      where: { id: jobId }
     });
 
     if (!job) {
@@ -45,7 +45,7 @@ exports.applyForJob = async (req, res, next) => {
       where: {
         studentId_jobId: {
           studentId: req.user.id,
-          jobId: parseInt(jobId)
+          jobId: jobId
         }
       }
     });
@@ -58,7 +58,7 @@ exports.applyForJob = async (req, res, next) => {
     const application = await prisma.application.create({
       data: {
         studentId: req.user.id,
-        jobId: parseInt(jobId),
+        jobId: jobId,
         resumeUrl,
         coverLetter,
         status: 'APPLIED'
@@ -111,7 +111,7 @@ exports.getApplicationsForJob = async (req, res, next) => {
 
     // Check if job exists
     const job = await prisma.job.findUnique({
-      where: { id: parseInt(jobId) }
+      where: { id: jobId }
     });
 
     if (!job) {
@@ -123,7 +123,7 @@ exports.getApplicationsForJob = async (req, res, next) => {
       return res.status(403).json({ error: 'Not authorized to view these applications' });
     }
 
-    const where = { jobId: parseInt(jobId) };
+    const where = { jobId: jobId };
     
     // Filter by status
     if (status) {
@@ -249,7 +249,7 @@ exports.updateApplicationStatus = async (req, res, next) => {
 
     // Get the application
     const application = await prisma.application.findUnique({
-      where: { id: parseInt(id) },
+      where: { id: id },
       include: {
         job: true
       }
@@ -265,7 +265,7 @@ exports.updateApplicationStatus = async (req, res, next) => {
     }
 
     const updatedApplication = await prisma.application.update({
-      where: { id: parseInt(id) },
+      where: { id: id },
       data: { status: status.toUpperCase() },
       include: {
         student: {
@@ -310,7 +310,7 @@ exports.withdrawApplication = async (req, res, next) => {
     const { id } = req.params;
 
     const application = await prisma.application.findUnique({
-      where: { id: parseInt(id) }
+      where: { id: id }
     });
 
     if (!application) {
@@ -323,7 +323,7 @@ exports.withdrawApplication = async (req, res, next) => {
     }
 
     await prisma.application.delete({
-      where: { id: parseInt(id) }
+      where: { id: id }
     });
 
     res.json({ message: 'Application withdrawn successfully' });
@@ -344,7 +344,7 @@ exports.getApplicationById = async (req, res, next) => {
     const { id } = req.params;
 
     const application = await prisma.application.findUnique({
-      where: { id: parseInt(id) },
+      where: { id: id },
       include: {
         student: {
           select: {

@@ -32,15 +32,13 @@ exports.register = async (req, res, next) => {
         batch
       },
       select: {
-        id: true,
-        email: true,
-        name: true,
-        role: true,
-        phone: true,
-        branch: true,
-        batch: true,
-        createdAt: true
-      }
+  id: true,
+  email: true,
+  name: true,
+  role: true,
+  resumePath: true,
+  isVerified: true
+}
     });
 
     // Generate token

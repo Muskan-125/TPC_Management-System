@@ -1,0 +1,178 @@
+2026-03-07 19:09:23 [INFO]: GET /api/health - IP: ::ffff:127.0.0.1
+2026-03-07 19:09:47 [INFO]: POST /api/auth/register - IP: ::ffff:127.0.0.1
+2026-03-07 19:09:54 [INFO]: POST /api/auth/register - IP: ::ffff:127.0.0.1
+2026-03-07 21:46:26 [INFO]: POST /api/auth/register - IP: ::ffff:127.0.0.1
+2026-03-07 21:48:19 [INFO]: POST /api/auth/register - IP: ::1
+2026-03-07 21:50:00 [INFO]: POST /api/auth/register - IP: ::1
+2026-03-07 21:50:23 [INFO]: POST /api/auth/register - IP: ::1
+2026-03-07 21:51:00 [INFO]: POST /api/auth/register - IP: ::1
+2026-03-07 21:52:02 [INFO]: POST /api/auth/register - IP: ::ffff:127.0.0.1
+2026-03-07 21:52:58 [INFO]: POST /api/auth/register - IP: ::ffff:127.0.0.1
+2026-03-07 22:14:03 [INFO]: POST /api/auth/login - IP: ::ffff:127.0.0.1
+2026-03-07 22:14:54 [INFO]: GET /api/auth/me - IP: ::ffff:127.0.0.1
+2026-03-07 22:15:07 [INFO]: GET /api/auth/me - IP: ::ffff:127.0.0.1
+2026-03-07 22:17:02 [INFO]: GET /api/auth/me - IP: ::ffff:127.0.0.1
+2026-03-07 22:17:51 [INFO]: GET /api/auth/me - IP: ::ffff:127.0.0.1
+2026-03-07 22:18:47 [INFO]: GET /api/auth/me - IP: ::ffff:127.0.0.1
+2026-03-07 22:21:36 [INFO]: GET /api/auth/me - IP: ::ffff:127.0.0.1
+2026-03-07 22:28:11 [INFO]: GET /api/auth/me - IP: ::ffff:127.0.0.1
+2026-03-07 22:29:30 [INFO]: POST /api/auth/register - IP: ::ffff:127.0.0.1
+2026-03-07 22:30:08 [INFO]: POST /api/jobs - IP: ::ffff:127.0.0.1
+2026-03-08 17:51:53 [INFO]: GET /api/jobs?search=&location=&salary=&page=1 - IP: ::1
+2026-03-08 17:51:53 [ERROR]: Get all jobs error: 
+Invalid `prisma.job.findMany()` invocation in
+C:\Users\mukan  sharma\OneDrive\Desktop\TPC_Management\backend\src\controllers\job.controller.js:76:18
+
+  73 
+  74 // Execute queries in parallel
+  75 const [jobs, total] = await Promise.all([
+→ 76   prisma.job.findMany({
+         where: {
+           isActive: true
+         },
+         include: {
+           company: {
+             select: {
+               id: true,
+               name: true,
+               isVerified: true
+             }
+           },
+           _count: {
+             select: {
+               applications: true
+             }
+           }
+         },
+         skip: 0,
+         take: 10,
+         orderBy: {
+           createdAt: "desc",
+           ~~~~~~~~~
+       ?   id?: SortOrder,
+       ?   title?: SortOrder,
+       ?   description?: SortOrder,
+       ?   location?: SortOrder,
+       ?   salary?: SortOrder | SortOrderInput,
+       ?   jobType?: SortOrder | SortOrderInput,
+       ?   requirements?: SortOrder | SortOrderInput,
+       ?   isActive?: SortOrder,
+       ?   companyId?: SortOrder
+         }
+       })
+
+Unknown argument `createdAt`. Available options are marked with ?.
+2026-03-08 17:51:53 [INFO]: GET /api/jobs?search=&location=&salary=&page=1 - IP: ::1
+2026-03-08 17:51:53 [ERROR]: Get all jobs error: 
+Invalid `prisma.job.findMany()` invocation in
+C:\Users\mukan  sharma\OneDrive\Desktop\TPC_Management\backend\src\controllers\job.controller.js:76:18
+
+  73 
+  74 // Execute queries in parallel
+  75 const [jobs, total] = await Promise.all([
+→ 76   prisma.job.findMany({
+         where: {
+           isActive: true
+         },
+         include: {
+           company: {
+             select: {
+               id: true,
+               name: true,
+               isVerified: true
+             }
+           },
+           _count: {
+             select: {
+               applications: true
+             }
+           }
+         },
+         skip: 0,
+         take: 10,
+         orderBy: {
+           createdAt: "desc",
+           ~~~~~~~~~
+       ?   id?: SortOrder,
+       ?   title?: SortOrder,
+       ?   description?: SortOrder,
+       ?   location?: SortOrder,
+       ?   salary?: SortOrder | SortOrderInput,
+       ?   jobType?: SortOrder | SortOrderInput,
+       ?   requirements?: SortOrder | SortOrderInput,
+       ?   isActive?: SortOrder,
+       ?   companyId?: SortOrder
+         }
+       })
+
+Unknown argument `createdAt`. Available options are marked with ?.
+2026-03-20 01:53:57 [INFO]: GET /api/jobs?search=&location=&salary=&page=1 - IP: ::1
+2026-03-20 01:54:00 [ERROR]: Get all jobs error: 
+Invalid `prisma.job.findMany()` invocation in
+C:\Users\mukan  sharma\OneDrive\Desktop\TPC_Management\backend\src\controllers\job.controller.js:76:18
+
+  73 
+  74 // Execute queries in parallel
+  75 const [jobs, total] = await Promise.all([
+→ 76   prisma.job.findMany({
+         where: {
+           isActive: true
+         },
+         include: {
+           company: {
+           ~~~~~~~
+             select: {
+               id: true,
+               name: true,
+               isVerified: true
+             }
+           },
+           _count: {
+             select: {
+               applications: true
+             }
+           }
+         },
+         skip: 0,
+         take: 10,
+         orderBy: {
+           id: "desc"
+         }
+       })
+
+Unknown field `company` for include statement on model `Job`. Available options are marked with ?.
+2026-03-20 01:54:00 [INFO]: GET /api/jobs?search=&location=&salary=&page=1 - IP: ::1
+2026-03-20 01:54:00 [ERROR]: Get all jobs error: 
+Invalid `prisma.job.findMany()` invocation in
+C:\Users\mukan  sharma\OneDrive\Desktop\TPC_Management\backend\src\controllers\job.controller.js:76:18
+
+  73 
+  74 // Execute queries in parallel
+  75 const [jobs, total] = await Promise.all([
+→ 76   prisma.job.findMany({
+         where: {
+           isActive: true
+         },
+         include: {
+           company: {
+           ~~~~~~~
+             select: {
+               id: true,
+               name: true,
+               isVerified: true
+             }
+           },
+           _count: {
+             select: {
+               applications: true
+             }
+           }
+         },
+         skip: 0,
+         take: 10,
+         orderBy: {
+           id: "desc"
+         }
+       })
+
+Unknown field `company` for include statement on model `Job`. Available options are marked with ?.

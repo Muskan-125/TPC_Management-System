@@ -172,7 +172,7 @@ exports.getAllUsers = async (req, res, next) => {
         },
         skip,
         take: parseInt(limit),
-        orderBy: { createdAt: 'desc' }
+orderBy: { id: 'desc' }
       }),
       prisma.user.count({ where })
     ]);
@@ -201,7 +201,7 @@ exports.getUserById = async (req, res, next) => {
     const { id } = req.params;
 
     const user = await prisma.user.findUnique({
-      where: { id: parseInt(id) },
+      where: { id: id },
       select: {
         id: true,
         email: true,
@@ -236,7 +236,7 @@ exports.deleteUser = async (req, res, next) => {
     const { id } = req.params;
 
     await prisma.user.delete({
-      where: { id: parseInt(id) }
+      where: { id: id }
     });
 
     logger.info(`User deleted: User ID ${id} by Admin ID ${req.user.id}`);
@@ -266,7 +266,7 @@ exports.updateUserRole = async (req, res, next) => {
     }
 
     const user = await prisma.user.update({
-      where: { id: parseInt(id) },
+      where: { id: id },
       data: { role },
       select: {
         id: true,

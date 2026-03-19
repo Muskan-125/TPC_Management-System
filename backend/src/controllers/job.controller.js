@@ -49,7 +49,7 @@ exports.getAllJobs = async (req, res, next) => {
 
     // Filter by company ID
     if (companyId) {
-      where.companyId = parseInt(companyId);
+      where.companyId = companyId;
     }
 
     // Search by job title (case-insensitive)
@@ -91,7 +91,7 @@ exports.getAllJobs = async (req, res, next) => {
         },
         skip,
         take,
-        orderBy: { createdAt: 'desc' }
+orderBy: { id: 'desc' }
       }),
       prisma.job.count({ where })
     ]);
@@ -131,7 +131,7 @@ exports.getJobById = async (req, res, next) => {
     const { id } = req.params;
 
     const job = await prisma.job.findUnique({
-      where: { id: parseInt(id) },
+      where: { id: id },
       include: {
         company: {
           select: {
@@ -229,7 +229,7 @@ exports.updateJob = async (req, res, next) => {
 
     // Check if job exists
     const existingJob = await prisma.job.findUnique({
-      where: { id: parseInt(id) }
+      where: { id: id }
     });
 
     if (!existingJob) {
@@ -242,7 +242,7 @@ exports.updateJob = async (req, res, next) => {
     }
 
     const job = await prisma.job.update({
-      where: { id: parseInt(id) },
+      where: { id: id },
       data: {
         title,
         description,
@@ -282,7 +282,7 @@ exports.deleteJob = async (req, res, next) => {
 
     // Check if job exists
     const existingJob = await prisma.job.findUnique({
-      where: { id: parseInt(id) }
+      where: { id: id }
     });
 
     if (!existingJob) {
@@ -295,7 +295,7 @@ exports.deleteJob = async (req, res, next) => {
     }
 
     await prisma.job.delete({
-      where: { id: parseInt(id) }
+      where: { id: id }
     });
 
     res.json({ message: 'Job deleted successfully' });
@@ -338,9 +338,8 @@ exports.getMyPostedJobs = async (req, res, next) => {
             }
           }
         },
-        skip,
         take: parseInt(limit),
-        orderBy: { createdAt: 'desc' }
+        orderBy: { id: 'desc' }
       }),
       prisma.job.count({ where })
     ]);

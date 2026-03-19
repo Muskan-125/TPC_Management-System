@@ -16,6 +16,12 @@ model User {
   role        String
   resumePath  String?
   isVerified  Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  // Relations
+  jobs         Job[]
+  applications Application[]
 }
 
 model Job {
@@ -28,6 +34,11 @@ model Job {
   requirements String?
   isActive     Boolean  @default(true)
   companyId    String
+  createdAt    DateTime @default(now())
+  
+  // Relations
+  company      User     @relation(fields: [companyId], references: [id])
+  applications Application[]
 }
 
 model Application {
@@ -38,4 +49,8 @@ model Application {
   resumeUrl   String?
   coverLetter String?
   appliedAt   DateTime @default(now())
+  
+  // Relations
+  student     User     @relation(fields: [studentId], references: [id])
+  job         Job      @relation(fields: [jobId], references: [id])
 }
