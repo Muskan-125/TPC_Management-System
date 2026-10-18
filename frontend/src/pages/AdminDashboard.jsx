@@ -66,7 +66,7 @@ const AdminDashboard = () => {
         >
           <div>
             <h2 className="fw-bold mb-1">
-              <FaCog className="me-2" style={{ color: '#2563eb' }} />
+              <FaCog className="me-2" style={{ color: '#dc2626' }} />
               Admin Dashboard
             </h2>
             <p className="text-muted mb-0">Manage students, companies, and placements</p>

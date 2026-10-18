@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaGraduationCap, FaBars, FaTimes, FaHome, FaBriefcase, FaSignInAlt, FaUserPlus, FaSignOutAlt, FaUser, FaCog, FaUserShield } from 'react-icons/fa';
+import { FaGraduationCap, FaBars, FaTimes, FaHome, FaBriefcase, FaSignInAlt, FaUserPlus, FaSignOutAlt, FaUser, FaCog, FaUserShield, FaUsers, FaEnvelope, FaUserTie } from 'react-icons/fa';
 import { isAuthenticated, getUserRole, logout, getStoredUser } from '../services/authService';
 
 const Navbar = () => {
@@ -42,7 +42,11 @@ const Navbar = () => {
 
   const navLinks = [
     { path: '/', label: 'Home', icon: FaHome },
-    { path: '/jobs', label: 'Jobs', icon: FaBriefcase },
+    { path: '/for-students', label: 'For Students', icon: FaGraduationCap },
+    { path: '/for-recruiters', label: 'For Recruiters', icon: FaBriefcase },
+    { path: '/team', label: 'Team', icon: FaUsers },
+    { path: '/for-alumni', label: 'For Alumni', icon: FaUserTie },
+    { path: '/contact-us', label: 'Contact Us', icon: FaEnvelope },
   ];
 
   const getDashboardLink = () => {
@@ -61,22 +65,27 @@ const Navbar = () => {
       animate={{ y: 0 }}
       transition={{ duration: 0.3 }}
       style={{ 
-        padding: isScrolled ? '0.5rem 0' : '0.75rem 0',
+        padding: isScrolled ? '0.5rem 1rem' : '0.75rem 1rem',
         transition: 'all 0.3s ease'
       }}
     >
-      <div className="container">
+      <div className="container-fluid">
         <Link to="/" className="navbar-brand d-flex align-items-center">
           <motion.div
             whileHover={{ rotate: 360 }}
             transition={{ duration: 0.5 }}
             className="me-2"
           >
-            <FaGraduationCap style={{ fontSize: '1.75rem', color: '#2563eb' }} />
+            <FaGraduationCap style={{ fontSize: '1.75rem', color: '#dc2626' }} />
           </motion.div>
-          <span className="fw-bold" style={{ fontSize: '1.5rem' }}>
-            <span className="gradient-text">TPC</span>
-          </span>
+          <div className="d-flex flex-column">
+            <span className="fw-bold" style={{ fontSize: '1.25rem', lineHeight: '1.2', color: '#000000' }}>
+              Bundelkhand Institute of
+            </span>
+            <span className="fw-bold" style={{ fontSize: '1.25rem', lineHeight: '1.2', color: '#000000' }}>
+              Engineering and Technology
+            </span>
+          </div>
         </Link>
 
         {/* Mobile Toggle */}
@@ -101,8 +110,9 @@ const Navbar = () => {
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3 }}
+              style={{ width: 'auto' }}
             >
-              <ul className="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
+              <ul className="navbar-nav mb-2 mb-lg-0 align-items-lg-center" style={{ marginLeft: '3rem' }}>
                 {/* Public Links */}
                 {navLinks.map((link) => (
                   <li className="nav-item" key={link.path}>
@@ -161,7 +171,7 @@ const Navbar = () => {
                             style={{ 
                               width: '38px', 
                               height: '38px', 
-                              background: 'linear-gradient(135deg, #2563eb 0%, #7c3aed 100%)',
+                              background: 'linear-gradient(135deg, #dc2626 0%, #d4a574 100%)',
                               fontSize: '0.9rem'
                             }}
                           >
@@ -177,7 +187,8 @@ const Navbar = () => {
                       <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                         <Link 
                           to="/login" 
-                          className="btn btn-outline-primary"
+                          className="btn"
+                          style={{ backgroundColor: '#dc2626', color: 'white', borderColor: '#dc2626' }}
                           onClick={() => setIsMenuOpen(false)}
                         >
                           <FaSignInAlt className="me-2" />
@@ -189,7 +200,8 @@ const Navbar = () => {
                       <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                         <Link 
                           to="/register" 
-                          className="btn btn-primary"
+                          className="btn"
+                          style={{ backgroundColor: '#d4a574', color: 'white', borderColor: '#d4a574' }}
                           onClick={() => setIsMenuOpen(false)}
                         >
                           <FaUserPlus className="me-2" />
@@ -207,6 +219,42 @@ const Navbar = () => {
 
       {/* Mobile Menu Styles */}
       <style>{`
+        .navbar {
+          display: flex !important;
+          align-items: center;
+        }
+        .container-fluid {
+          display: flex !important;
+          align-items: center !important;
+          flex-wrap: wrap;
+          gap: 2rem;
+        }
+        .nav-link {
+          font-weight: 500;
+          padding: 0.5rem 1rem !important;
+          border-radius: 6px;
+          transition: all 0.3s ease;
+          color: #654321 !important;
+          margin-right: 0.5rem;
+        }
+        .nav-link:hover {
+          background-color: rgba(220, 38, 38, 0.1);
+          color: #dc2626 !important;
+        }
+        .nav-link.active {
+          background-color: rgba(220, 38, 38, 0.15);
+          color: #dc2626 !important;
+          border-bottom: 2px solid #dc2626;
+        }
+        .navbar-nav {
+          gap: 0.5rem;
+        }
+        @media (min-width: 992px) {
+          .navbar-collapse {
+            display: flex !important;
+            width: auto !important;
+          }
+        }
         @media (max-width: 991px) {
           .navbar-mobile {
             position: absolute;
@@ -227,8 +275,8 @@ const Navbar = () => {
             margin-bottom: 0.25rem;
           }
           .nav-link:hover, .nav-link.active {
-            background: rgba(37, 99, 235, 0.1);
-            color: #2563eb !important;
+            background: rgba(220, 38, 38, 0.1);
+            color: #dc2626 !important;
           }
         }
       `}</style>

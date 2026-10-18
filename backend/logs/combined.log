@@ -176,3 +176,213 @@ C:\Users\mukan  sharma\OneDrive\Desktop\TPC_Management\backend\src\controllers\j
        })
 
 Unknown field `company` for include statement on model `Job`. Available options are marked with ?.
+2026-08-08 02:41:38 [INFO]: GET /api/jobs?search=&location=&salary=&page=1 - IP: ::1
+2026-08-08 02:41:43 [ERROR]: Get all jobs error: 
+Invalid `prisma.job.findMany()` invocation in
+C:\Users\mukan  sharma\OneDrive\Desktop\TPC_Management\backend\src\controllers\job.controller.js:76:18
+
+  73 
+  74 // Execute queries in parallel
+  75 const [jobs, total] = await Promise.all([
+→ 76   prisma.job.findMany({
+         where: {
+           isActive: true
+         },
+         include: {
+           company: {
+           ~~~~~~~
+             select: {
+               id: true,
+               name: true,
+               isVerified: true
+             }
+           },
+           _count: {
+             select: {
+               applications: true
+             }
+           }
+         },
+         skip: 0,
+         take: 10,
+         orderBy: {
+           id: "desc"
+         }
+       })
+
+Unknown field `company` for include statement on model `Job`. Available options are marked with ?.
+2026-08-08 02:41:43 [INFO]: GET /api/jobs?search=&location=&salary=&page=1 - IP: ::1
+2026-08-08 02:41:43 [ERROR]: Get all jobs error: 
+Invalid `prisma.job.findMany()` invocation in
+C:\Users\mukan  sharma\OneDrive\Desktop\TPC_Management\backend\src\controllers\job.controller.js:76:18
+
+  73 
+  74 // Execute queries in parallel
+  75 const [jobs, total] = await Promise.all([
+→ 76   prisma.job.findMany({
+         where: {
+           isActive: true
+         },
+         include: {
+           company: {
+           ~~~~~~~
+             select: {
+               id: true,
+               name: true,
+               isVerified: true
+             }
+           },
+           _count: {
+             select: {
+               applications: true
+             }
+           }
+         },
+         skip: 0,
+         take: 10,
+         orderBy: {
+           id: "desc"
+         }
+       })
+
+Unknown field `company` for include statement on model `Job`. Available options are marked with ?.
+2026-08-08 02:44:59 [INFO]: GET /api/jobs?search=&location=&salary=&page=1 - IP: ::1
+2026-08-08 02:44:59 [ERROR]: Get all jobs error: 
+Invalid `prisma.job.findMany()` invocation in
+C:\Users\mukan  sharma\OneDrive\Desktop\TPC_Management\backend\src\controllers\job.controller.js:76:18
+
+  73 
+  74 // Execute queries in parallel
+  75 const [jobs, total] = await Promise.all([
+→ 76   prisma.job.findMany({
+         where: {
+           isActive: true
+         },
+         include: {
+           company: {
+           ~~~~~~~
+             select: {
+               id: true,
+               name: true,
+               isVerified: true
+             }
+           },
+           _count: {
+             select: {
+               applications: true
+             }
+           }
+         },
+         skip: 0,
+         take: 10,
+         orderBy: {
+           id: "desc"
+         }
+       })
+
+Unknown field `company` for include statement on model `Job`. Available options are marked with ?.
+2026-08-08 02:44:59 [INFO]: GET /api/jobs?search=&location=&salary=&page=1 - IP: ::1
+2026-08-08 02:44:59 [ERROR]: Get all jobs error: 
+Invalid `prisma.job.findMany()` invocation in
+C:\Users\mukan  sharma\OneDrive\Desktop\TPC_Management\backend\src\controllers\job.controller.js:76:18
+
+  73 
+  74 // Execute queries in parallel
+  75 const [jobs, total] = await Promise.all([
+→ 76   prisma.job.findMany({
+         where: {
+           isActive: true
+         },
+         include: {
+           company: {
+           ~~~~~~~
+             select: {
+               id: true,
+               name: true,
+               isVerified: true
+             }
+           },
+           _count: {
+             select: {
+               applications: true
+             }
+           }
+         },
+         skip: 0,
+         take: 10,
+         orderBy: {
+           id: "desc"
+         }
+       })
+
+Unknown field `company` for include statement on model `Job`. Available options are marked with ?.
+2026-10-18 12:42:25 [INFO]: GET /api/jobs?search=&location=&salary=&page=1 - IP: ::1
+2026-10-18 12:42:26 [ERROR]: Get all jobs error: 
+Invalid `prisma.job.findMany()` invocation in
+C:\Users\mukan  sharma\OneDrive\Desktop\TPC_Management\backend\src\controllers\job.controller.js:76:18
+
+  73 
+  74 // Execute queries in parallel
+  75 const [jobs, total] = await Promise.all([
+→ 76   prisma.job.findMany({
+         where: {
+           isActive: true
+         },
+         include: {
+           company: {
+           ~~~~~~~
+             select: {
+               id: true,
+               name: true,
+               isVerified: true
+             }
+           },
+           _count: {
+             select: {
+               applications: true
+             }
+           }
+         },
+         skip: 0,
+         take: 10,
+         orderBy: {
+           id: "desc"
+         }
+       })
+
+Unknown field `company` for include statement on model `Job`. Available options are marked with ?.
+2026-10-18 12:42:26 [INFO]: GET /api/jobs?search=&location=&salary=&page=1 - IP: ::1
+2026-10-18 12:42:26 [ERROR]: Get all jobs error: 
+Invalid `prisma.job.findMany()` invocation in
+C:\Users\mukan  sharma\OneDrive\Desktop\TPC_Management\backend\src\controllers\job.controller.js:76:18
+
+  73 
+  74 // Execute queries in parallel
+  75 const [jobs, total] = await Promise.all([
+→ 76   prisma.job.findMany({
+         where: {
+           isActive: true
+         },
+         include: {
+           company: {
+           ~~~~~~~
+             select: {
+               id: true,
+               name: true,
+               isVerified: true
+             }
+           },
+           _count: {
+             select: {
+               applications: true
+             }
+           }
+         },
+         skip: 0,
+         take: 10,
+         orderBy: {
+           id: "desc"
+         }
+       })
+
+Unknown field `company` for include statement on model `Job`. Available options are marked with ?.

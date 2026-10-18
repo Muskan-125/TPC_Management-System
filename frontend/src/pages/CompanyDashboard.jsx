@@ -160,7 +160,7 @@ const CompanyDashboard = () => {
                           <div className="d-flex align-items-center">
                             <div 
                               className="rounded-circle me-2 d-flex align-items-center justify-content-center text-white fw-bold"
-                              style={{ width: '35px', height: '35px', background: 'linear-gradient(135deg, #2563eb 0%, #7c3aed 100%)' }}
+                              style={{ width: '35px', height: '35px', background: 'linear-gradient(135deg, #dc2626 0%, #d4a574 100%)' }}
                             >
                               {app.student.name.charAt(0)}
                             </div>
