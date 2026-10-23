@@ -22,7 +22,6 @@ The TPC Management System is a web-based placement portal designed to streamline
 ## Project Structure
 - `frontend/` — frontend application
 - `backend/` — backend API and server
-- `TPC WEBSITE.pdf` — project documentation/design reference
 
 ## Getting Started
 1. Clone this repository.
