@@ -7,6 +7,13 @@ const { generateToken } = require('../utils/token');
 exports.register = async (req, res, next) => {
   try {
     const { email, password, name, role, phone, branch, batch } = req.body;
+    const normalizedRole = (role || 'STUDENT').toUpperCase();
+
+    if (!['STUDENT', 'COMPANY'].includes(normalizedRole)) {
+      return res.status(400).json({
+        error: 'Only student and company registrations are allowed from this page.'
+      });
+    }
 
     // Check if user already exists
     const existingUser = await prisma.user.findUnique({
@@ -26,7 +33,7 @@ exports.register = async (req, res, next) => {
         email,
         password: hashedPassword,
         name,
-        role: role || 'STUDENT',
+        role: normalizedRole,
         phone,
         branch,
         batch

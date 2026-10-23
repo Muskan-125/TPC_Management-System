@@ -25,7 +25,7 @@ const Home = () => {
   return (
     <div className="home-page">
       {/* Hero Section */}
-      <section className="hero position-relative overflow-hidden">
+      <section id="home-hero" className="hero position-relative overflow-hidden">
         <div className="hero-shape hero-shape-1"></div>
         <div className="hero-shape hero-shape-2"></div>
         <div className="hero-shape hero-shape-3"></div>
@@ -110,7 +110,7 @@ const Home = () => {
       </section>
 
       {/* Features Section */}
-      <section className="py-5">
+      <section id="why-choose-us" className="py-5">
         <div className="container">
           <motion.div
             className="text-center mb-5"
@@ -297,7 +297,7 @@ const Home = () => {
       </section>
 
       {/* Footer */}
-      <footer className="footer">
+      <footer id="footer" className="footer">
         <div className="container">
           <div className="row g-4">
             <div className="col-lg-4">

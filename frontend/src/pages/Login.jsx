@@ -160,17 +160,6 @@ const Login = () => {
                   </motion.div>
                 </form>
 
-                <motion.p
-                  className="text-center mt-4 mb-0"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.5 }}
-                >
-                  Don't have an account?{' '}
-                  <Link to="/register" className="fw-semibold text-decoration-none">
-                    Register Now
-                  </Link>
-                </motion.p>
               </div>
             </motion.div>
 

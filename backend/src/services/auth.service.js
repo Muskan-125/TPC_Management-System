@@ -7,6 +7,11 @@ class AuthService {
   // Register a new user
   async register(userData) {
     const { email, password, name, role, phone, branch, batch } = userData;
+    const normalizedRole = (role || 'STUDENT').toUpperCase();
+
+    if (!['STUDENT', 'COMPANY'].includes(normalizedRole)) {
+      throw new Error('Only student and company registrations are allowed from this page.');
+    }
 
     // Check if user already exists
     const existingUser = await prisma.user.findUnique({
@@ -26,7 +31,7 @@ class AuthService {
         email,
         password: hashedPassword,
         name,
-        role: role || 'STUDENT',
+        role: normalizedRole,
         phone,
         branch,
         batch

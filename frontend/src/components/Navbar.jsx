@@ -41,13 +41,73 @@ const Navbar = () => {
   };
 
   const navLinks = [
-    { path: '/', label: 'Home', icon: FaHome },
-    { path: '/for-students', label: 'For Students', icon: FaGraduationCap },
-    { path: '/for-recruiters', label: 'For Recruiters', icon: FaBriefcase },
-    { path: '/team', label: 'Team', icon: FaUsers },
+    { path: '/', label: 'Home', icon: FaHome, isHomeLink: true },
+    { path: '/#why-choose-us', label: 'For Students', icon: FaGraduationCap, isSectionLink: true },
+    { path: '/#why-choose-us', label: 'For Recruiters', icon: FaBriefcase, isSectionLink: true },
+    { path: '/#why-choose-us', label: 'Team', icon: FaUsers, isSectionLink: true },
     { path: '/for-alumni', label: 'For Alumni', icon: FaUserTie },
-    { path: '/contact-us', label: 'Contact Us', icon: FaEnvelope },
+    { path: '/contact-us', label: 'Contact Us', icon: FaEnvelope, isFooterLink: true },
   ];
+
+  const scrollToSection = (targetId) => {
+    const target = document.getElementById(targetId);
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
+  const handleSectionClick = (event, targetId) => {
+    event.preventDefault();
+    setIsMenuOpen(false);
+
+    if (location.pathname !== '/') {
+      navigate('/');
+      setTimeout(() => scrollToSection(targetId), 200);
+      return;
+    }
+
+    scrollToSection(targetId);
+  };
+
+  const handleHomeClick = (event) => {
+    event.preventDefault();
+    setIsMenuOpen(false);
+
+    const scrollToHome = () => {
+      const homeSection = document.getElementById('home-hero');
+      if (homeSection) {
+        homeSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    };
+
+    if (location.pathname !== '/') {
+      navigate('/');
+      setTimeout(scrollToHome, 200);
+      return;
+    }
+
+    scrollToHome();
+  };
+
+  const handleContactUsClick = (event) => {
+    event.preventDefault();
+    setIsMenuOpen(false);
+
+    const scrollToFooter = () => {
+      const footer = document.getElementById('footer');
+      if (footer) {
+        footer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    };
+
+    if (location.pathname !== '/') {
+      navigate('/');
+      setTimeout(scrollToFooter, 200);
+      return;
+    }
+
+    scrollToFooter();
+  };
 
   const getDashboardLink = () => {
     switch (userRole) {
@@ -115,21 +175,71 @@ const Navbar = () => {
               <ul className="navbar-nav mb-2 mb-lg-0 align-items-lg-center" style={{ marginLeft: '3rem' }}>
                 {/* Public Links */}
                 {navLinks.map((link) => (
-                  <li className="nav-item" key={link.path}>
-                    <Link 
-                      className={`nav-link ${location.pathname === link.path ? 'active' : ''}`}
-                      to={link.path}
-                      onClick={() => setIsMenuOpen(false)}
-                    >
-                      <motion.div
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="d-flex align-items-center gap-2"
+                  <li className="nav-item" key={`${link.path}-${link.label}`}>
+                    {link.isHomeLink ? (
+                      <button
+                        type="button"
+                        className={`nav-link ${location.pathname === '/' ? 'active' : ''}`}
+                        onClick={handleHomeClick}
+                        style={{ background: 'transparent', border: 'none', width: '100%', textAlign: 'left' }}
                       >
-                        <link.icon className="d-lg-none" />
-                        {link.label}
-                      </motion.div>
-                    </Link>
+                        <motion.div
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                          className="d-flex align-items-center gap-2"
+                        >
+                          <link.icon className="d-lg-none" />
+                          {link.label}
+                        </motion.div>
+                      </button>
+                    ) : link.isSectionLink ? (
+                      <button
+                        type="button"
+                        className={`nav-link ${location.pathname === '/' ? 'active' : ''}`}
+                        onClick={(event) => handleSectionClick(event, 'why-choose-us')}
+                        style={{ background: 'transparent', border: 'none', width: '100%', textAlign: 'left' }}
+                      >
+                        <motion.div
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                          className="d-flex align-items-center gap-2"
+                        >
+                          <link.icon className="d-lg-none" />
+                          {link.label}
+                        </motion.div>
+                      </button>
+                    ) : link.isFooterLink ? (
+                      <button
+                        type="button"
+                        className={`nav-link ${location.pathname === '/' ? 'active' : ''}`}
+                        onClick={handleContactUsClick}
+                        style={{ background: 'transparent', border: 'none', width: '100%', textAlign: 'left' }}
+                      >
+                        <motion.div
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                          className="d-flex align-items-center gap-2"
+                        >
+                          <link.icon className="d-lg-none" />
+                          {link.label}
+                        </motion.div>
+                      </button>
+                    ) : (
+                      <Link 
+                        className={`nav-link ${location.pathname === link.path ? 'active' : ''}`}
+                        to={link.path}
+                        onClick={() => setIsMenuOpen(false)}
+                      >
+                        <motion.div
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                          className="d-flex align-items-center gap-2"
+                        >
+                          <link.icon className="d-lg-none" />
+                          {link.label}
+                        </motion.div>
+                      </Link>
+                    )}
                   </li>
                 ))}
 

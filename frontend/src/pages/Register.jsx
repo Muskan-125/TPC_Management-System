@@ -26,10 +26,19 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
+
+    const safeRole = formData.role === 'COMPANY' ? 'COMPANY' : 'STUDENT';
+    const payload = { ...formData, role: safeRole };
+
+    if (payload.role !== 'STUDENT' && payload.role !== 'COMPANY') {
+      setError('Only student and company accounts can be created from this page.');
+      return;
+    }
+
     setLoading(true);
 
     try {
-      const data = await register(formData);
+      const data = await register(payload);
       // Redirect based on role
       if (data.user.role === 'COMPANY') {
         navigate('/dashboard/company');
